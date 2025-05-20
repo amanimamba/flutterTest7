@@ -1,0 +1,23 @@
+{
+  "version": "2.4.1",
+  "summary": {
+    "title": "Raissa",
+    "owner": "Test ",
+    "description": "système unifié ",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "eloge"
+      },
+      {
+        "name": "roméo"
+      }
+    ],
+    "diagrams": [],
+    "diagramTop": 0,
+    "reviewer": "dev",
+    "threatTop": 0
+  }
+}
