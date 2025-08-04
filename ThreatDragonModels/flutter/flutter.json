@@ -1,33 +1,635 @@
 {
-  "version": "2.4.1",
+  "version": "1.0.0",
   "summary": {
-    "title": "flutter",
-    "owner": "Ramses",
-    "description": "test",
-    "id": 0
+    "title": "Plateforme Demande Facture Pro Forma - Analyse STRIDE",
+    "owner": "système_facturation",
+    "description": "Modèle de menaces STRIDE pour une plateforme web de demande et génération de factures pro forma avec gestion des rôles client/employé",
+    "id": 1
   },
   "detail": {
     "contributors": [
       {
-        "name": "eloge"
+        "name": "Analyste Sécurité"
       },
       {
-        "name": "claude"
+        "name": "Architecte Système"
+      },
+      {
+        "name": "Expert STRIDE"
       }
     ],
     "diagrams": [
       {
-        "id": 0,
-        "title": "flutter",
-        "diagramType": "Générique",
-        "placeholder": "New generic diagram description",
-        "thumbnail": "./public/content/images/thumbnail.jpg",
-        "version": "2.4.1",
-        "cells": []
+        "id": 1,
+        "title": "Architecture Plateforme Facture Pro Forma - Modèle STRIDE",
+        "diagramType": "STRIDE",
+        "placeholder": "Diagramme d'architecture avec analyse des menaces STRIDE pour plateforme de facturation",
+        "thumbnail": "./public/content/images/proforma_thumbnail.jpg",
+        "version": "1.0.0",
+        "cells": [
+          {
+            "position": {
+              "x": 50,
+              "y": 50
+            },
+            "size": {
+              "width": 120,
+              "height": 80
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {"position": "top", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "right": {"position": "right", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "bottom": {"position": "bottom", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "left": {"position": "left", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}}
+              },
+              "items": [
+                {"group": "top", "id": "client-top"},
+                {"group": "right", "id": "client-right"},
+                {"group": "bottom", "id": "client-bottom"},
+                {"group": "left", "id": "client-left"}
+              ]
+            },
+            "id": "client-external",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Client Externe",
+              "description": "Utilisateur externe qui s'enregistre, se connecte, soumet des demandes et consulte le statut de ses factures",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "threat-client-01",
+                  "title": "Accès non autorisé à un compte client",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Un attaquant pourrait accéder au compte d'un client légitime en utilisant des identifiants volés ou compromis",
+                  "mitigation": "- Implémenter une authentification forte (mot de passe complexe, 2FA)\n- Limiter les tentatives de connexion\n- Utiliser des jetons de session sécurisés\n- Surveillance des connexions suspectes",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "8.2"
+                },
+                {
+                  "id": "threat-client-02",
+                  "title": "Client nie avoir fait une demande",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Un client pourrait nier avoir soumis une demande de facture pro forma",
+                  "mitigation": "- Enregistrer l'historique complet des actions du client (demandes soumises, dates, adresses IP)\n- Demander une confirmation par e-mail après la soumission d'une demande\n- Horodatage précis et traçabilité",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "6.5"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 250
+            },
+            "size": {
+              "width": 120,
+              "height": 80
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {"position": "top", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "right": {"position": "right", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "bottom": {"position": "bottom", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "left": {"position": "left", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}}
+              },
+              "items": [
+                {"group": "top", "id": "employee-top"},
+                {"group": "right", "id": "employee-right"},
+                {"group": "bottom", "id": "employee-bottom"},
+                {"group": "left", "id": "employee-left"}
+              ]
+            },
+            "id": "employee-admin",
+            "zIndex": 2,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Employé/Administrateur",
+              "description": "Utilisateur interne qui accède aux demandes, les gère, les valide, génère des factures pro forma et les envoie",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "threat-employee-01",
+                  "title": "Employé se faisant passer pour un autre",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Un employé pourrait usurper l'identité d'un autre employé pour effectuer des actions non autorisées",
+                  "mitigation": "- Utiliser une authentification et une autorisation basées sur les rôles (RBAC)\n- Enregistrer et auditer les actions sensibles de chaque employé\n- Sessions individuelles et traçables",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "7.8"
+                },
+                {
+                  "id": "threat-employee-02",
+                  "title": "Employé nie avoir généré une facture",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Un employé pourrait nier avoir créé, modifié ou envoyé une facture pro forma",
+                  "mitigation": "- Enregistrer l'ID de l'employé et la date/heure de chaque action (création, modification, envoi de facture)\n- Utiliser des signatures numériques pour les documents générés\n- Audit trail complet",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": "6.0"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 320,
+              "y": 50
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {"position": "top", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "right": {"position": "right", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "bottom": {"position": "bottom", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "left": {"position": "left", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}}
+              },
+              "items": [
+                {"group": "top", "id": "webapp-top"},
+                {"group": "right", "id": "webapp-right"},
+                {"group": "bottom", "id": "webapp-bottom"},
+                {"group": "left", "id": "webapp-left"}
+              ]
+            },
+            "id": "web-interface",
+            "zIndex": 3,
+            "data": {
+              "type": "tm.Process",
+              "name": "Interface Web",
+              "description": "Application web permettant l'authentification, la soumission de demandes et la consultation des factures",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": true,
+              "isWebApplication": true,
+              "privilegeLevel": "User",
+              "threats": [
+                {
+                  "id": "threat-webapp-01",
+                  "title": "Modification d'une demande de facture par le client",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Un client pourrait modifier une demande après soumission ou manipuler les données avant envoi",
+                  "mitigation": "- Valider et assainir toutes les entrées utilisateur côté serveur\n- Marquer les demandes comme non modifiables une fois soumises\n- Utiliser des hachages de contrôle pour vérifier l'intégrité des données critiques",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "7.5"
+                },
+                {
+                  "id": "threat-webapp-02",
+                  "title": "Accès non autorisé à des fonctionnalités d'administrateur",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of Privilege",
+                  "description": "Un utilisateur normal pourrait accéder aux fonctionnalités réservées aux employés/administrateurs",
+                  "mitigation": "- Mettre en place un système de gestion des rôles et des permissions bien défini (RBAC)\n- Assurer que toutes les vérifications de privilèges sont effectuées côté serveur\n- Double authentification pour les actions sensibles",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "9.1"
+                },
+                {
+                  "id": "threat-webapp-03",
+                  "title": "Client modifie son rôle pour devenir administrateur",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of Privilege",
+                  "description": "Un client pourrait tenter de modifier ses privilèges pour obtenir des droits administratifs",
+                  "mitigation": "- Les rôles doivent être gérés uniquement par l'application et la base de données, jamais par des entrées utilisateur\n- Les jetons d'authentification doivent contenir des informations de rôle, mais celles-ci doivent être vérifiées à chaque requête\n- Validation stricte côté serveur",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "9.0"
+                },
+                {
+                  "id": "threat-webapp-04",
+                  "title": "Surcharge du serveur par de nombreuses requêtes",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of Service",
+                  "description": "Un attaquant pourrait surcharger le serveur avec un grand nombre de requêtes pour rendre le service indisponible",
+                  "mitigation": "- Limiter le nombre de demandes qu'un client peut faire dans une période donnée (rate limiting)\n- Utiliser un WAF (Web Application Firewall) pour bloquer les attaques DDoS\n- Monitoring des performances et alertes",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "6.8"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 580,
+              "y": 150
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "ports": {
+              "groups": {
+                "top": {"position": "top", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "right": {"position": "right", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "bottom": {"position": "bottom", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "left": {"position": "left", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}}
+              },
+              "items": [
+                {"group": "top", "id": "database-top"},
+                {"group": "right", "id": "database-right"},
+                {"group": "bottom", "id": "database-bottom"},
+                {"group": "left", "id": "database-left"}
+              ]
+            },
+            "id": "main-database",
+            "zIndex": 4,
+            "data": {
+              "type": "tm.Store",
+              "name": "Base de Données",
+              "description": "Stockage des demandes de factures, données clients, informations employés et factures générées",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "threat-db-01",
+                  "title": "Accès à des données client sensibles",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information Disclosure",
+                  "description": "Exposition non autorisée des données sensibles des clients (e-mails, adresses, informations financières)",
+                  "mitigation": "- Stocker les données sensibles (e-mails, adresses) cryptées\n- Restreindre l'accès à la base de données via des pare-feux et des règles de sécurité\n- Authentification forte pour l'accès DB\n- Audit des accès aux données sensibles",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": "9.3"
+                },
+                {
+                  "id": "threat-db-02",
+                  "title": "Accès aux factures d'autres clients",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information Disclosure",
+                  "description": "Un client pourrait accéder aux factures et demandes d'autres clients",
+                  "mitigation": "- Implémenter un contrôle d'accès strict (Authorization) pour garantir qu'un client ne peut voir que ses propres factures\n- Vérifier les ID de session et les permissions avant d'afficher un document\n- Isolation des données par client",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": "8.5"
+                },
+                {
+                  "id": "threat-db-03",
+                  "title": "Modification du statut d'une demande",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Modification non autorisée du statut des demandes de factures",
+                  "mitigation": "- Le statut de la demande ne doit être modifiable que par un employé autorisé\n- Journaliser toutes les modifications de statut avec l'utilisateur et l'heure\n- Contrôles d'intégrité des données\n- Workflow d'approbation",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "7.9"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 800,
+              "y": 150
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "ports": {
+              "groups": {
+                "top": {"position": "top", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "right": {"position": "right", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "bottom": {"position": "bottom", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "left": {"position": "left", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}}
+              },
+              "items": [
+                {"group": "top", "id": "filestorage-top"},
+                {"group": "right", "id": "filestorage-right"},
+                {"group": "bottom", "id": "filestorage-bottom"},
+                {"group": "left", "id": "filestorage-left"}
+              ]
+            },
+            "id": "document-storage",
+            "zIndex": 5,
+            "data": {
+              "type": "tm.Store",
+              "name": "Stockage Documents",
+              "description": "Système de stockage de fichiers pour les factures pro forma générées et documents associés",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": true,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "threat-storage-01",
+                  "title": "Accès non autorisé aux documents de facturation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information Disclosure",
+                  "description": "Accès direct aux fichiers de factures pro forma sans autorisation appropriée",
+                  "mitigation": "- Contrôle d'accès strict aux fichiers avec authentification\n- Chiffrement des documents au repos\n- URLs signées et temporaires pour l'accès aux documents\n- Audit des accès aux fichiers",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": "8.0"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 580,
+              "y": 50
+            },
+            "size": {
+              "width": 140,
+              "height": 80
+            },
+            "attrs": {
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {"position": "top", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "right": {"position": "right", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "bottom": {"position": "bottom", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}},
+                "left": {"position": "left", "attrs": {"circle": {"r": 4, "magnet": true, "stroke": "#5F95FF", "strokeWidth": 1, "fill": "#fff", "style": {"visibility": "hidden"}}}}
+              },
+              "items": [
+                {"group": "top", "id": "email-top"},
+                {"group": "right", "id": "email-right"},
+                {"group": "bottom", "id": "email-bottom"},
+                {"group": "left", "id": "email-left"}
+              ]
+            },
+            "id": "email-notification",
+            "zIndex": 6,
+            "data": {
+              "type": "tm.Process",
+              "name": "Service de Notification Email",
+              "description": "Service d'envoi d'emails pour les confirmations de demandes et la livraison des factures pro forma",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "Service",
+              "threats": [
+                {
+                  "id": "threat-email-01",
+                  "title": "Interception des emails de confirmation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information Disclosure",
+                  "description": "Interception des emails contenant des informations sensibles sur les demandes et factures",
+                  "mitigation": "- Utiliser HTTPS (TLS) pour chiffrer toutes les communications\n- Éviter d'inclure des informations sensibles dans les emails\n- Utiliser des liens sécurisés vers le portail plutôt que des pièces jointes\n- Chiffrement des emails sensibles",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": "6.5"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#2563eb",
+                "strokeWidth": 2.5,
+                "targetMarker": {"name": "block"},
+                "sourceMarker": {"name": ""},
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authentification & Demande",
+              "description": "Le client s'authentifie et soumet une demande de facture pro forma",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "threat-flow-01",
+                  "title": "Interception des données d'authentification",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information Disclosure",
+                  "description": "Interception des identifiants de connexion et des données de demande pendant la transmission",
+                  "mitigation": "- Chiffrement TLS obligatoire pour toutes les communications\n- Utilisation de certificats valides et vérifiés\n- Pas de transmission d'informations sensibles en URL\n- Sessions sécurisées avec tokens",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "8.0"
+                }
+              ]
+            },
+            "labels": ["Authentification & Demande"],
+            "id": "flow-client-web",
+            "source": {"cell": "client-external", "port": "client-right"},
+            "target": {"cell": "web-interface", "port": "webapp-left"},
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#059669",
+                "strokeWidth": 2.5,
+                "targetMarker": {"name": "block"},
+                "sourceMarker": {"name": ""},
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 11,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Gestion Administrative",
+              "description": "L'employé accède aux demandes, les valide et génère les factures",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS/Intranet",
+              "threats": [
+                {
+                  "id": "threat-flow-02",
+                  "title": "Session hijacking employé",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Détournement de session d'un employé pour accéder aux fonctions administratives",
+                  "mitigation": "- Sessions sécurisées avec timeout automatique\n- Régénération des tokens de session\n- Monitoring des activités administratives\n- Double authentification pour actions sensibles\n- Détection d'anomalies comportementales",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": "8.3"
+                }
+              ]
+            },
+            "labels": ["Gestion Administrative"],
+            "id": "flow-employee-web",
+            "source": {"cell": "employee-admin", "port": "employee-right"},
+            "target": {"cell": "web-interface", "port": "webapp-left"},
+            "vertices": [{"x": 250, "y": 290}]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#dc2626",
+                "strokeWidth": 2.5,
+                "targetMarker": {"name": "block"},
+                "sourceMarker": {"name": ""},
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 12,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Stockage Données",
+              "description": "Stockage et récupération des demandes, données clients et factures",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "SQL/TLS",
+              "threats": [
+            {
+              "id": "threat-flow-03",
+              "title": "Altération des données pendant la transmission",
+              "status": "Open",
+              "severity": "High",
+              "type": "Tampering",
+              "description": "Des données sensibles peuvent être modifiées lors de leur transfert entre l'application et la base de données si les connexions ne sont pas sécurisées.",
+              "mitigation": "- Utiliser des connexions TLS entre l'application et la base de données\n- Vérification d'intégrité avec des hachages\n- Limiter l'accès réseau à la base uniquement aux services autorisés\n- Monitoring et alertes en cas d'anomalies",
+              "modelType": "STRIDE",
+              "new": false,
+              "number": 16,
+              "score": "7.7"
+            }
+          ]
+        },
+        "labels": ["Stockage Données"],
+        "id": "flow-web-db",
+        "source": { "cell": "web-interface", "port": "webapp-right" },
+        "target": { "cell": "main-database", "port": "database-left" },
+        "vertices": []
       }
-    ],
-    "diagramTop": 1,
-    "reviewer": "dev",
-    "threatTop": 0
+    ]
   }
 }
